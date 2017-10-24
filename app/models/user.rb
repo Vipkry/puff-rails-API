@@ -1,5 +1,7 @@
 class User < ApplicationRecord
     
+    has_secure_password
+    
     before_validation :check_reg
     
     validates_presence_of :reg
