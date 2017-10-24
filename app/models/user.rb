@@ -6,6 +6,8 @@ class User < ApplicationRecord
     
     validates_presence_of :reg
     
+    has_many :ratings
+    
     # OK tested
     def check_reg
       if !self.reg.scan(/\D/).empty?
