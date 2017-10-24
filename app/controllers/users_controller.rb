@@ -24,6 +24,24 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST/login
+  def authenticate
+    user = User.find_by(reg: params[:reg])
+    @ans = false
+    if user && user.authenticate(params[:password])
+      @ans = true
+      render json: @ans
+    else
+      render json: @ans
+  end
+  
+  def authenticate2
+    
+    @ans = false
+    render json: @ans
+    
+  end
+
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
