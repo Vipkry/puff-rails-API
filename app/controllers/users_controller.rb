@@ -33,6 +33,7 @@ class UsersController < ApplicationController
       render json: @ans
     else
       render json: @ans
+    end
   end
   
   def authenticate2
