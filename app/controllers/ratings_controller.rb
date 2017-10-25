@@ -60,6 +60,9 @@ class RatingsController < ApplicationController
     
     @objs.each(&:save!)
     
+    feedback = Feedback.new(:text => params[:feedback], :teacher_id => params[:t].to_i, :user_id => params[:u])
+    feedback.save
+    
     render json: @objs
   end
 
