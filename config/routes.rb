@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   post   'rate'                       => 'ratings#rate'
   get    'users_reg'                  => 'users#users_reg'
   get    'rating'                     => 'ratings#rating'
+  post   'change'                     => 'users#change'
   
 end

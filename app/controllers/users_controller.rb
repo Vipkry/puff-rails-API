@@ -56,6 +56,20 @@ class UsersController < ApplicationController
   def destroy
     #@user.destroy
   end
+  
+  # POST /change 
+  def change
+    @aux = false
+    user = User.find_by(reg: params[:reg])
+    if user && user.authenticate(params[:password])
+      if params[:password_new] == params[:password_new_confirmation]
+        user.update(:password => params[:password_new])
+        @aux = true
+      end
+    end
+    
+    render json: @aux
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
