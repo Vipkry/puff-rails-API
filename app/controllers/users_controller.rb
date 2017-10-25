@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    
     @users = User.all
 
     render json: @users
@@ -17,6 +16,7 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
+    @user.teacher_id = 0;
 
     if @user.save
       render json: @user, status: :created, location: @user
