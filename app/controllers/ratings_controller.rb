@@ -74,8 +74,8 @@ class RatingsController < ApplicationController
     
     param.each do |pa|
       aux = Rating.where('teacher_id = ? and param_id = ?', teacher_id, pa.id)
-      sum = aux.sum(:rate)
-      cont = aux.count
+      sum = aux.sum(:rate).to_f
+      cont = aux.count.to_f
       media = sum/cont
       # tax = (100*media)
       # tax = tax / 5.0
