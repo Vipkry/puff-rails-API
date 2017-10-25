@@ -76,10 +76,10 @@ class RatingsController < ApplicationController
       aux = Rating.where('teacher_id = ? and param_id = ?', teacher_id, pa.id)
       sum = aux.sum(:rate).to_f
       cont = aux.count.to_f
-      media = sum/cont
-      # tax = (100*media)
-      # tax = tax / 5.0
-      @result << media
+      media = sum/cont.to_f
+      tax = (100*media).to_f
+      tax = (tax / 5.0).to_f.round(2)
+      @result << tax
     end
   render json: @result  
     
