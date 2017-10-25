@@ -38,11 +38,10 @@ class RatingsController < ApplicationController
     @rating.destroy
   end
 
-  # GET /rate
+  # POST /rate
   def rate 
     all_params = Param.all
-    ratings = params[:rating].to_s
-    ratings = ratings.split(//)
+    ratings = params[:rating].split(//)
     @objs = []
 
     i = 0
@@ -52,7 +51,7 @@ class RatingsController < ApplicationController
       i = i + 1
     end
     
-    @objs.each(&:save)
+    @objs.each(&:save!)
     
     render json: @objs
   end
