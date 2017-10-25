@@ -79,7 +79,7 @@ class RatingsController < ApplicationController
       media = sum/cont
       # tax = (100*media)
       # tax = tax / 5.0
-      @result << tax
+      @result << media
     end
   render json: @result  
     
