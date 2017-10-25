@@ -24,6 +24,13 @@ class FeedbacksController < ApplicationController
     end
   end
 
+  # GET /feedback
+  def feedback
+    teacher_id = params[:teacher]
+    @result = Feedback.where('teacher_id = ?')
+    render json: @result
+  end
+  
   # PATCH/PUT /feedbacks/1
   def update
     if @feedback.update(feedback_params)
