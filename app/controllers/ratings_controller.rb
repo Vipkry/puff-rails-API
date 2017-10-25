@@ -42,12 +42,19 @@ class RatingsController < ApplicationController
   def rate 
     all_params = Param.all
     ratings = params[:rating].split(//)
+    u =  User.find_by(reg: params[:u])
+    u_id = 0
+    
+    if u 
+      u_id = u.id
+    end
+    
     @objs = []
 
     i = 0
     ratings.each do |rate|
       # rate chega em ordem assim : "445"
-      @objs << Rating.new(:rate => rate.to_i, :teacher_id => params[:t].to_i, :user_id => params[:u].to_i, :param_id => all_params[i].id)
+      @objs << Rating.new(:rate => rate.to_i, :teacher_id => params[:t].to_i, :user_id => u_id, :param_id => all_params[i].id)
       i = i + 1
     end
     
