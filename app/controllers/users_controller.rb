@@ -37,6 +37,12 @@ class UsersController < ApplicationController
     end
   end
   
+  #GET /users_reg
+  def users_reg
+    @user = User.find_by(reg: params[:reg])
+    render json: @user
+  end
+  
   def authenticate2
     @ans = false
     render json: @ans
