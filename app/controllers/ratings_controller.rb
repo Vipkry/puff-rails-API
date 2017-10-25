@@ -64,6 +64,25 @@ class RatingsController < ApplicationController
   end
 
 
+  def rating
+    # 5 -> 100%
+    # 1 -> 0%
+    
+    teacher_id = params[:teacher]
+    param = Param.first(3)
+    @result = []
+    
+    param.each do |pa|
+      aux = Rating.where('teacher_id = ? && param_id = ?', teacher_id, pa.id)
+      sum = aux.sum(:rate)
+      cont = aux.count
+      @result << Rating.
+    end
+    
+    
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rating

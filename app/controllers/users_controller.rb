@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     end
   end
 
-  #POST /login
+  # POST /login
   def authenticate
     user = User.find_by(reg: params[:reg])
     @ans = false
@@ -37,15 +37,10 @@ class UsersController < ApplicationController
     end
   end
   
-  #GET /users_reg
+  # GET /users_reg
   def users_reg
     @user = User.find_by(reg: params[:reg])
     render json: @user
-  end
-  
-  def authenticate2
-    @ans = false
-    render json: @ans
   end
 
   # PATCH/PUT /users/1
