@@ -76,7 +76,7 @@ class RatingsController < ApplicationController
       aux = Rating.where('teacher_id = ? and param_id = ?', teacher_id, pa.id)
       sum = aux.sum(:rate)
       cont = aux.count
-      media = sum/count
+      media = sum/cont
       tax = (100*media)/5
       @result << tax
     end
