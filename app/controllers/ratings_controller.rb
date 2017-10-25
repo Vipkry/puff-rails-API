@@ -77,7 +77,8 @@ class RatingsController < ApplicationController
       sum = aux.sum(:rate)
       cont = aux.count
       media = sum/cont
-      tax = (100*media)/5
+      # tax = (100*media)
+      # tax = tax / 5.0
       @result << tax
     end
   render json: @result  
