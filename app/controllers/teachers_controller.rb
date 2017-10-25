@@ -3,7 +3,7 @@ class TeachersController < ApplicationController
 
   # GET /teachers
   def index
-    @teachers = Teacher.all
+    @teachers = Teacher.order(:name)
 
     render json: @teachers
   end

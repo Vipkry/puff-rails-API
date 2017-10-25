@@ -46,6 +46,7 @@ class RatingsController < ApplicationController
 
     i = 0
     ratings.each do |rate|
+      # rate chega em ordem assim : "445"
       @objs << Rating.new(:rate => rate.to_i, :teacher_id => params[:t].to_i, :user_id => params[:u], :param_id => all_params[i].id)
       i = i + 1
     end
