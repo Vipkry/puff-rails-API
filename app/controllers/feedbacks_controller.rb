@@ -27,7 +27,7 @@ class FeedbacksController < ApplicationController
   # GET /feedback
   def feedback
     teacher_id = params[:teacher]
-    @result = Feedback.where('teacher_id = ?')
+    @result = Feedback.where('teacher_id = ?', teacher_id)
     render json: @result
   end
   
