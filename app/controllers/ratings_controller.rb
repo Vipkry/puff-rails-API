@@ -15,7 +15,7 @@ class RatingsController < ApplicationController
 
   # GET /stats
   def stats
-    teacher = Teacher.find(params[:teacher_id])
+    teacher = Teacher.find_by(id: params[:teacher_id])
     param_order = params[:param].to_i
     param = nil
 
@@ -32,7 +32,7 @@ class RatingsController < ApplicationController
     if teacher && param
       rating = Rating.where('param_id = ? and teacher_id = ?', param.id, teacher.id).first
       months = []
-      months << rating.create_at.month
+      months << rating.created_at.strftime("%b")
       values = []
       values << rating.rate
       @result = [months, values]
