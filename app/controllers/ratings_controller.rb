@@ -13,6 +13,38 @@ class RatingsController < ApplicationController
     render json: @rating
   end
 
+  # GET /stats
+  def stats
+    teacher = Teacher.find(params[:teacher_id])
+    param_order = params[:param].to_i
+    param = nil
+
+    if param_order == 1
+      param = Param.first
+    elsif param_order == 2
+      param = Param.second
+    elsif param_order == 3
+      param = Param.third
+    else
+      param = Param.last
+    end
+
+    if teacher && param
+      rating = Rating.where('param_id = ? and teacher_id = ?', param.id, teacher.id).first
+      months = []
+      months << rating.create_at.month
+      values = []
+      values << rating.rate
+      @result = [months, values]
+
+      render json: @result
+    else
+      render json: nil, status: 404
+    end
+
+
+  end
+
   # POST /ratings
   def create
     @rating = Rating.new(rating_params)
