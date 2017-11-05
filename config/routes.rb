@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   get    'rating'                     => 'ratings#rating'
   post   'change'                     => 'users#change'
   get    'feedback'                   => 'feedbacks#feedback'
+  get    'stats'                      => 'ratings#stats'
   
 end
