@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :params
-  resources :ratings
-  resources :teachers
-  
-  post   'users/create'
+
+  get    '/teachers'                  => 'teachers#index'
+  get    '/teachers/:id'              => 'teachers#show'
+  post   '/users'                     => 'users#create'
   post   'login'                      => 'users#authenticate'
   post   'rate'                       => 'ratings#rate'
   get    'users_reg'                  => 'users#users_reg'
