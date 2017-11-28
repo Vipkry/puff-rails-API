@@ -1,12 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
 
-  # GET /users
-  def index
-    @users = User.all
-
-    render json: @users
-  end
+  skip_before_action :authenticate, :only => [:create, :authenticate]
 
   # GET /users/1
   def show
@@ -35,21 +29,20 @@ class UsersController < ApplicationController
     else
       render json: @ans
     end
+
+    command = AuthenticateUser.call(params[:id_nat], params[:password])
+    
+    if command.success?
+      render json: { auth_token: command.result }, status: 200
+    else 
+      render json: { error: command.errors }, status: 401 
+    end
+    
   end
   
   # GET /users_reg
   def users_reg
-    @user = User.find_by(reg: params[:reg])
-    render json: @user
-  end
-
-  # PATCH/PUT /users/1
-  def update
-    if @user.update(user_params)
-      render json: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    render json: @current_user
   end
 
   # DELETE /users/1
@@ -60,7 +53,7 @@ class UsersController < ApplicationController
   # POST /change 
   def change
     @aux = false
-    user = User.find_by(reg: params[:reg])
+    user = @current_user
     if user && user.authenticate(params[:password])
       if params[:password_new] == params[:password_new_confirmation]
         user.update(:password => params[:password_new])
@@ -72,11 +65,6 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
-
     # Only allow a trusted parameter "white list" through.
     def user_params
       params.require(:user).permit(:name, :reg, :admin, :password)
