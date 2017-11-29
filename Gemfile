@@ -9,7 +9,7 @@ end
 gem 'rails', '~> 5.1.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
-gem 'bcrypt', platforms: :ruby
+gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'carrierwave-base64'
 gem 'jwt'

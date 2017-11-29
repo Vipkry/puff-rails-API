@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user.teacher_id = 0;
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -17,15 +17,7 @@ class UsersController < ApplicationController
   # POST /login
   def authenticate
     user = User.find_by(reg: params[:reg])
-    @ans = false
-    if user && user.authenticate(params[:password])
-      @ans = true
-      render json: @ans
-    else
-      render json: @ans
-    end
-
-    command = AuthenticateUser.call(params[:id_nat], params[:password])
+    command = AuthenticateUser.call(params[:reg], params[:password])
     
     if command.success?
       render json: { auth_token: command.result }, status: 200

@@ -1,4 +1,7 @@
 class TeachersController < ApplicationController
+  
+  skip_before_action :authenticate, :only => [:index]
+
   # GET /teachers
   def index
     @teachers = Teacher.order(:name)
