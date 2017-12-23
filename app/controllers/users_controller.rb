@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   skip_before_action :authenticate, :only => [:create, :authenticate]
 
-  # POST /users/create
+  # POST /users
   def create
     @user = User.new(user_params)
     @user.teacher_id = 0;
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   
   # GET /users_reg
   def users_reg
-    render json: @current_user
+    render json: @current_user, status: 200
   end
   
   # POST /change 

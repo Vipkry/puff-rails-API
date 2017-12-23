@@ -24,10 +24,46 @@ Use o token para manipular o restante da API como o usuário correto logado.
 (Incluindo o token no header 'Authorization')
 
 **Parametros:** reg, password
-**Retorna:** auth_token
+**Retorna:** auth_token (HTTP 200) ou HTTP 401 caso não tenha sido passado uma combinação correta reg + password
 
     Exemplo:
         Parametros: {"reg": "123123123", "password": "123123123"}
 
         Retorna: {"auth_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTQxMDcyODJ9.Qwo-zc5wtNaKqVyoH_2ZSBNFIiMWoZY0hsUSvnc5YAc"}
 
+
+### POST /users
+
+Cria um novo usuário e retorna um objeto JSON representando o novo usuário.
+
+**Parametros:** name, reg, password, password_confirmation
+**Retorna:** Objeto JSON do usuário criado (HTTP status: 201) ou o objeto JSON com os erros a serem consertados (HTTP 422)
+
+    Exemplo:
+        Parametros: {"reg": "123123123", "password": "123123123", "password_confirmation": "123123123", "name": "Foo Bar"}
+
+        Retorna: {"reg": "123123123", "password": "[cifrado]", "name": "Foo Bar"}
+
+### POST /users_reg
+
+Retorna objeto JSON do usuário atual
+
+**Parametros:** HEADER: auth_token
+**Retorna:** Objeto JSON do usuário (HTTP status: 200) ou não autorizado (HTTP 401)
+
+    Exemplo:
+        Parametros: (HEADER) {"Authorization": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTQxMDcyODJ9.Qwo-zc5wtNaKqVyoH_2ZSBNFIiMWoZY0hsUSvnc5YAc"}
+
+        Retorna: {"reg": "123123123", "password": "[cifrado]", "name": "Foo Bar"}
+
+### POST /users_reg
+
+Retorna objeto JSON do usuário atual
+
+**Parametros:** HEADER: auth_token
+**Retorna:** Objeto JSON do usuário (HTTP status: 200) ou não autorizado (HTTP 401)
+
+    Exemplo:
+        Parametros: (HEADER) {"Authorization": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTQxMDcyODJ9.Qwo-zc5wtNaKqVyoH_2ZSBNFIiMWoZY0hsUSvnc5YAc"}
+
+        Retorna: {"reg": "123123123", "password": "[cifrado]", "name": "Foo Bar"}
