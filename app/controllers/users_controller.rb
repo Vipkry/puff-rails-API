@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  #sskip_before_action :authenticate, :only => [:create, :authenticate]
+  skip_before_action :authenticate, :only => [:create, :auth]
 
   # POST /users
   def create
