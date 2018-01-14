@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
+  get    'users_reg'                  => 'users#users_reg'
   get    '/teachers'                  => 'teachers#index'
   get    '/teachers/:id'              => 'teachers#show'
   post   '/users'                     => 'users#create'
-  post   'login'                      => 'users#authenticate'
+  post   'login'                      => 'users#auth'
   post   'rate'                       => 'ratings#rate'
-  get    'users_reg'                  => 'users#users_reg'
   get    'rating'                     => 'ratings#rating'
   post   'change'                     => 'users#change'
   get    'feedback'                   => 'feedbacks#feedback'

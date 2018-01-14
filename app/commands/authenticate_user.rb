@@ -11,11 +11,11 @@ class AuthenticateUser
 	end 
 
 	private 
-
 		attr_accessor :reg, :password
 
         def user
-            user = User.find_by(reg: reg) 
+			user = User.find_by(reg: reg) 
+			Rails.logger.warn " USER obtained on fetch = #{user}"
             if user && user.authenticate(password)
                 return user
             else

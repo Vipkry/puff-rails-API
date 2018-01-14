@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  skip_before_action :authenticate, :only => [:create, :authenticate]
+  #sskip_before_action :authenticate, :only => [:create, :authenticate]
 
   # POST /users
   def create
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   # POST /login
-  def authenticate
+  def auth
     user = User.find_by(reg: params[:reg])
     command = AuthenticateUser.call(params[:reg], params[:password])
     
@@ -24,7 +24,6 @@ class UsersController < ApplicationController
     else 
       render json: { error: command.errors }, status: 401 
     end
-    
   end
   
   # GET /users_reg
