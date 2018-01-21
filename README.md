@@ -56,14 +56,16 @@ Retorna objeto JSON do usuário atual
 
         Retorna: {"reg": "123123123", "password": "[cifrado]", "name": "Foo Bar"}
 
-### POST /users_reg
+### POST /change
 
-Retorna objeto JSON do usuário atual
+Troca a senha do usuário.
+Retorna o booleano se a troca de senha foi executada.
 
-**Parametros:** HEADER: auth_token
-**Retorna:** Objeto JSON do usuário (HTTP status: 200) ou não autorizado (HTTP 401)
+**Parametros:** HEADER: auth_token, PARAMS: password, password_new, password_new_confirmation
+**Retorna:** Objeto JSON do booleano (HTTP status: 200) ou não autorizado (HTTP 401)
 
     Exemplo:
         Parametros: (HEADER) {"Authorization": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTQxMDcyODJ9.Qwo-zc5wtNaKqVyoH_2ZSBNFIiMWoZY0hsUSvnc5YAc"}
+                    (PARAMS) {"passoword": "foobar", "password_new": "123", "password_new_confirmation": "123"}
 
-        Retorna: {"reg": "123123123", "password": "[cifrado]", "name": "Foo Bar"}
+        Retorna: {true} ou {false} caso a confirmação ou senha não conferem
