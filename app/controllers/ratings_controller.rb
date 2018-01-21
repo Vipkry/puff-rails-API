@@ -1,8 +1,14 @@
 class RatingsController < ApplicationController
 
+  skip_before_action :authenticate, :only => [:rating]
+
   # GET /stats
   def stats
-    teacher = Teacher.find_by(id: params[:teacher_id])
+    if !@current_user.teacher
+      render json: nil, status: 404
+    end
+
+    teacher = @current_user
     param_order = params[:param].to_i
     param = nil
 
@@ -34,19 +40,13 @@ class RatingsController < ApplicationController
   def rate 
     all_params = Param.all
     ratings = params[:rating].split(//)
-    u =  User.find_by(reg: params[:u])
-    u_id = 0
-    
-    if u 
-      u_id = u.id
-    end
     
     @objs = []
 
     i = 0
     ratings.each do |rate|
       # rate chega em ordem assim : "445"
-      @objs << Rating.new(:rate => rate.to_i, :teacher_id => params[:t].to_i, :user_id => u_id, :param_id => all_params[i].id)
+      @objs << Rating.new(:rate => rate.to_i, :teacher_id => params[:t].to_i, :user_id => @current_user.id, :param_id => all_params[i].id)
       i = i + 1
     end
     
@@ -57,7 +57,6 @@ class RatingsController < ApplicationController
     
     render json: @objs
   end
-
 
   # GET /rating
   def rating

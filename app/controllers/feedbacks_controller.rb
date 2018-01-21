@@ -8,7 +8,7 @@ class FeedbacksController < ApplicationController
     if @result
       render json: @result, status: 200
     else
-      render json: {error: "User is not a teacher!"}, status: 400
+      render json: nil, status: 404
     end
   end
 end
