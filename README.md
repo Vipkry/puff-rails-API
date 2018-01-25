@@ -5,7 +5,7 @@ Ruby 2.4.0
 
 Heroku URL: https://icuff17-api.herokuapp.com
 
-###Como usar
+### Como usar
 
     Após ter instalado Ruby e Ruby on Rails, execute localmente usando 'rails server'.
     Verifique a porta que o servidor vai utilizar (3000 se você não tiver feito nenhuma alteração)
