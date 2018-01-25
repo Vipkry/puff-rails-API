@@ -79,5 +79,17 @@ Retorna lista de todos professores (sem avaliação).
 
     Exemplo:
     
-        Retorna: {"id":11,"photo":"http://ic.uff.br/phto.png","name":"Professor1","subject":"Fundamentos de Arquitetura de Computadores","created_at":"2017-10-25T14:35:19.342Z","updated_at":"2017-10-25T14:35:19.342Z"},
-                 {"id":12,"photo":"http://ic.uff.br/phto.png","name":"Professor2","subject":"Fundamentos de Arquitetura de Computadores","created_at":"2017-11-26T15:35:19.342Z","updated_at":"2017-11-26T15:35:19.342Z"}
+        Retorna: {"id":11,"photo":"http://ic.uff.br/phto.png", "name":"Professor1", "subject":"Fundamentos de Arquitetura de Computadores", "created_at":"2017-10-25T14:35:19.342Z","updated_at":"2017-10-25T14:35:19.342Z"},
+                 {"id":12,"photo":"http://ic.uff.br/phto.png", "name":"Professor2", "subject":"Fundamentos de Arquitetura de Computadores", "created_at":"2017-11-26T15:35:19.342Z", "updated_at":"2017-11-26T15:35:19.342Z"}
+                 
+                 
+### GET /teachers
+
+**Parametros:** PARAMS: 
+Retorna objeto JSON de um professor (sem avaliação).
+
+**Retorna:** Objeto JSON do professor (HTTP status: 200)
+
+    Exemplo:
+    
+        Retorna: {"id":11, "photo":"http://ic.uff.br/phto.png", "name":"Professor1", "subject":"Fundamentos de Arquitetura de Computadores", "created_at":"2017-10-25T14:35:19.342Z", "updated_at":"2017-10-25T14:35:19.342Z"}
