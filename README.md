@@ -69,3 +69,15 @@ Retorna o booleano se a troca de senha foi executada.
                     (PARAMS) {"passoword": "foobar", "password_new": "123", "password_new_confirmation": "123"}
 
         Retorna: {true} ou {false} caso a confirmação ou senha não conferem
+        
+        
+### GET /teachers
+
+Retorna lista de todos professores (sem avaliação).
+
+**Retorna:** Objeto JSON da lista (HTTP status: 200)
+
+    Exemplo:
+    
+        Retorna: {"id":11,"photo":"http://ic.uff.br/phto.png","name":"Professor1","subject":"Fundamentos de Arquitetura de Computadores","created_at":"2017-10-25T14:35:19.342Z","updated_at":"2017-10-25T14:35:19.342Z"},
+                 {"id":12,"photo":"http://ic.uff.br/phto.png","name":"Professor2","subject":"Fundamentos de Arquitetura de Computadores","created_at":"2017-11-26T15:35:19.342Z","updated_at":"2017-11-26T15:35:19.342Z"}
