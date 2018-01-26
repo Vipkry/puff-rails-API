@@ -64,6 +64,9 @@ class RatingsController < ApplicationController
     # 1 -> 0%
     
     teacher_id = params[:teacher]
+    if (!teacher_id)
+      render json: nil, status: 404
+    end
     param = Param.first(3)
     @result = []
     
