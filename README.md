@@ -44,7 +44,7 @@ Cria um novo usuário e retorna um objeto JSON representando o novo usuário.
 
         Retorna: {"reg": "123123123", "password": "[cifrado]", "name": "Foo Bar"}
 
-### POST /users_reg
+### GET /users_reg
 
 Retorna objeto JSON do usuário atual
 
