@@ -24,6 +24,7 @@ Use o token para manipular o restante da API como o usuário correto logado.
 (Incluindo o token no header 'Authorization')
 
 **Parametros:** reg, password
+
 **Retorna:** auth_token (HTTP 200) ou HTTP 401 caso não tenha sido passado uma combinação correta reg + password
 
     Exemplo:
@@ -37,6 +38,7 @@ Use o token para manipular o restante da API como o usuário correto logado.
 Cria um novo usuário e retorna um objeto JSON representando o novo usuário.
 
 **Parametros:** name, reg, password, password_confirmation
+
 **Retorna:** Objeto JSON do usuário criado (HTTP status: 201) ou o objeto JSON com os erros a serem consertados (HTTP 422)
 
     Exemplo:
@@ -49,6 +51,7 @@ Cria um novo usuário e retorna um objeto JSON representando o novo usuário.
 Retorna objeto JSON do usuário atual
 
 **Parametros:** HEADER: auth_token
+
 **Retorna:** Objeto JSON do usuário (HTTP status: 200) ou não autorizado (HTTP 401)
 
     Exemplo:
@@ -62,6 +65,7 @@ Troca a senha do usuário.
 Retorna o booleano se a troca de senha foi executada.
 
 **Parametros:** HEADER: auth_token, PARAMS: password, password_new, password_new_confirmation
+
 **Retorna:** Objeto JSON do booleano (HTTP status: 200) ou não autorizado (HTTP 401)
 
     Exemplo:
@@ -73,6 +77,7 @@ Retorna o booleano se a troca de senha foi executada.
 ### POST /rate
          
 **Parametros:** HEADER: auth_token, PARAMS: t, rate
+
 **Retorna:** Objeto JSON dos ratings criados (HTTP status: 200) ou não autorizado (HTTP 401)
 
     Exemplo:
@@ -108,6 +113,7 @@ Retorna objeto JSON de um professor (sem avaliação).
 Retorna a avaliação geral do professor em porcentagem na ordem: Foco, Material e Frequência
 
 **Parametros:** PARAMS:teacher (id do professor)
+
 **Retorna:** Objeto JSON do booleano (HTTP status: 200) ou não encontrado (HTTP 404)
 
     Exemplo:
