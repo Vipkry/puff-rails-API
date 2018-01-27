@@ -70,6 +70,16 @@ Retorna o booleano se a troca de senha foi executada.
 
         Retorna: {true} ou {false} caso a confirmação ou senha não conferem
         
+### POST /rate
+         
+**Parametros:** HEADER: auth_token, PARAMS: t, rate
+**Retorna:** Objeto JSON dos ratings criados (HTTP status: 200) ou não autorizado (HTTP 401)
+
+    Exemplo:
+        Parametros: (HEADER) {"Authorization": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTQxMDcyODJ9.Qwo-zc5wtNaKqVyoH_2ZSBNFIiMWoZY0hsUSvnc5YAc"}
+                    (PARAMS) {"t": "11", "rate": "1/2/3"}
+
+        Retorna: {"rate": "1", "teacher_id": "11", "user_id": 16, "param_id": 1}
         
 ### GET /teachers
 
