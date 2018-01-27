@@ -119,6 +119,20 @@ dos professores
 
 #### TODO
 
+### GET /feedback
+
+Retorna lista de todos feedbacks escritos sobre o professor logado no momento
+
+**Parametros:** HEADER: auth_token
+
+**Retorna:** Objeto JSON da lista (HTTP status: 200), não encontrado (HTTP 404) caso o usuário logado não seja um professor ou não autorizado (HTTP 401)
+
+    Exemplo:
+        
+        Parametros: (HEADER) {"Authorization": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTQxMDcyODJ9.Qwo-zc5wtNaKqVyoH_2ZSBNFIiMWoZY0hsUSvnc5YAc"}
+        
+        Retorna: [{"id":17,"text":"","user_id":123123,"teacher_id":11,"created_at":"2017-10-25T22:23:22.992Z","updated_at":"2017-10-25T22:23:22.992Z"},{"id":19,"text":"mensagem para o professor","user_id":123123,"teacher_id":11,"created_at":"2017-10-26T22:01:26.426Z","updated_at":"2017-10-26T22:01:26.426Z"}]
+
 ### GET /rating
 
 Retorna a avaliação geral do professor em porcentagem na ordem: Foco, Material e Frequência
