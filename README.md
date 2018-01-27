@@ -86,9 +86,10 @@ Retorna o booleano se a troca de senha foi executada.
 
         Retorna: {"rate": "1", "teacher_id": "11", "user_id": 16, "param_id": 1}
         
-### GET /teachers
+### GET /teachers/
 
 Retorna lista de todos professores (sem avaliação).
+**Parametros:** HEADER: auth_token, PARAMS: t, rate
 
 **Retorna:** Objeto JSON da lista (HTTP status: 200)
 
@@ -98,16 +99,26 @@ Retorna lista de todos professores (sem avaliação).
                  {"id":12,"photo":"http://ic.uff.br/phto.png", "name":"Professor2", "subject":"Fundamentos de Arquitetura de Computadores", "created_at":"2017-11-26T15:35:19.342Z", "updated_at":"2017-11-26T15:35:19.342Z"}
                  
                  
-### GET /teachers
+### GET /teachers/:id
 
 Retorna objeto JSON de um professor (sem avaliação).
+
+**Parametro** Id do professor pela url
 
 **Retorna:** Objeto JSON do professor (HTTP status: 200)
 
     Exemplo:
+        Request: http://localhost:3000/teachers/11
     
         Retorna: {"id":11, "photo":"http://ic.uff.br/phto.png", "name":"Professor1", "subject":"Fundamentos de Arquitetura de Computadores", "created_at":"2017-10-25T14:35:19.342Z", "updated_at":"2017-10-25T14:35:19.342Z"}
         
+### GET /stats
+
+Retorna objeto JSON com as informações necessária para os gráficos de acompanhamento (estatísticas)
+dos professores
+
+#### TODO
+
 ### GET /rating
 
 Retorna a avaliação geral do professor em porcentagem na ordem: Foco, Material e Frequência
