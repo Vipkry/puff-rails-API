@@ -8,7 +8,7 @@ class RatingsController < ApplicationController
       render json: nil, status: 404
     end
 
-    teacher = @current_user
+    teacher = Teacher.find(@current_user.teacher_id)
     param_order = params[:param].to_i
     param = nil
 
@@ -28,7 +28,7 @@ class RatingsController < ApplicationController
       values = []
       contador_ratings_array = []
 
-      contador_meses = 0
+      contador_meses = -1
       
       ratings.each do |rating|
         actual_month = rating.created_at.strftime("%b")
@@ -57,6 +57,10 @@ class RatingsController < ApplicationController
         i += 1
       end
 
+      # pega só os últimos 12 meses de valores
+      months = months.reverse.take(12).reverse     
+      values = values.reverse.take(12).reverse
+    
       @result = [months, values]
 
       render json: @result
