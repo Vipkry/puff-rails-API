@@ -115,9 +115,18 @@ Retorna objeto JSON de um professor (sem avaliação).
 ### GET /stats
 
 Retorna objeto JSON com as informações necessária para os gráficos de acompanhamento (estatísticas)
-dos professores
+do professor logado
 
-#### TODO
+**Parametros:** HEADER: auth_token , PARAMS: param (não é o id do parametro, e sim a ordem)
+
+**Retorna:** Objeto JSON com o resultado das estatísticas (média aritimética) nos últimos 12 meses do professor de acordo com o parametro passado (na ordem de visualização do aplicativo)
+
+    Exemplo:
+        Request: http://localhost:3000/stats?param=1
+    
+        Parametros: (HEADER) {"Authorization": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTQxMDcyODJ9.Qwo-zc5wtNaKqVyoH_2ZSBNFIiMWoZY0hsUSvnc5YAc"}
+    
+        Retorna: {"id":11, "photo":"http://ic.uff.br/phto.png", "name":"Professor1", "subject":"Fundamentos de Arquitetura de Computadores", "created_at":"2017-10-25T14:35:19.342Z", "updated_at":"2017-10-25T14:35:19.342Z"}
 
 ### GET /feedback
 
