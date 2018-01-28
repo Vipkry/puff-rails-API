@@ -8,7 +8,7 @@ class RatingsController < ApplicationController
       render json: nil, status: 404
     end
 
-    teacher = @current_user
+    teacher = Teacher.find(@current_user.teacher_id)
     param_order = params[:param].to_i
     param = nil
 
@@ -23,11 +23,44 @@ class RatingsController < ApplicationController
     end
 
     if teacher && param
-      rating = Rating.where('param_id = ? and teacher_id = ?', param.id, teacher.id).first
+      ratings = Rating.where('param_id = ? and teacher_id = ?', param.id, teacher.id).order(:created_at)
       months = []
-      months << rating.created_at.strftime("%b")
       values = []
-      values << rating.rate
+      contador_ratings_array = []
+
+      contador_meses = -1
+      
+      ratings.each do |rating|
+        actual_month = rating.created_at.strftime("%b")
+        
+        if !months.include?(actual_month)
+          contador_meses += 1
+          months << actual_month 
+        end
+
+        # se não houve nova inserção de meses, adiciona a avaliação.
+        if values[contador_meses]
+          values[-1] += rating.rate
+          contador_ratings_array[-1] += 1
+        # se houver inserção de meses, adiciona um novo item na array e reseta o contador
+        else
+          values << rating.rate
+          contador_ratings_array << 1
+        end  
+      end
+
+      # itera os valores para dividir pelo numero de 
+      # ratings e obter a media aritimetica
+      i = 0
+      values.each do |value|
+        values[i] = value/contador_ratings_array[i]
+        i += 1
+      end
+
+      # pega só os últimos 12 meses de valores
+      months = months.reverse.take(12).reverse     
+      values = values.reverse.take(12).reverse
+    
       @result = [months, values]
 
       render json: @result
